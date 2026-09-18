@@ -4,6 +4,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router"
 
+import { SquarePen } from 'lucide-react';
+import { Trash } from 'lucide-react';
+import DeleteProduct from "@/common/DeleteProduct";
+import EditProduct from "./EditPage";
+
+
 // import { NepaliRupee } from 'lucide-react';
 
 
@@ -16,6 +22,9 @@ const ProductDetailPage = () => {
     const [thisProduct, setThisProduct] = useState({
         images: []
     });
+
+    const [wantsToDelete, setWantsToDelete] = useState(false);
+    const [wantsToEdit, setWantsToEdit] = useState(false);
     
 
     useEffect(() => {
@@ -53,12 +62,20 @@ const ProductDetailPage = () => {
         //     </div>
         // </div>
         <div className="max-w-6xl mx-auto px-6 py-10">
+                <div className="flex justify-self-end gap-8">
+                    <button className="active:scale-95"
+                        onClick={()=>setWantsToEdit(true)}
+                    ><SquarePen /></button>
+                    <button className="active:scale-95"
+                        onClick={()=>setWantsToDelete(true)}
+                    ><Trash /></button>
+                </div>
             <div className="grid md:grid-cols-2 gap-10">
 
                 {/* Product Image */}
                 <div className="overflow-hidden rounded-xl">
                     <ImageFallback
-                        src={thisProduct?.images?.[0]}
+                        src={thisProduct?.images}
                         alt="no image"
                         className="w-full aspect-4/5 object-cover object-center"
                     />
@@ -80,11 +97,11 @@ const ProductDetailPage = () => {
                     </p>
 
                     <div className="flex gap-8 items-center mt-4 justify-center">
-                        <button className="bg-red-400 px-4 py-2 rounded-xl hover:bg-red-300 " onClick={()=>setCount(Math.max(0, count-1))}>-</button>
+                        <button className="bg-red-400 px-4 py-2 rounded-xl hover:bg-red-300 active:scale-95" onClick={()=>setCount(Math.max(0, count-1))}>-</button>
 
                         <span className="w-10 flex justify-center">{count}</span>
 
-                        <button className="bg-yellow-400 px-4 py-2 rounded-xl hover:bg-yellow-200 " onClick={()=>setCount(Math.min(100, count+1))}>+</button>
+                        <button className="bg-yellow-400 px-4 py-2 rounded-xl hover:bg-yellow-200 active:scale-95" onClick={()=>setCount(Math.min(100, count+1))}>+</button>
                     </div>
 
                     <button className="mt-8 w-full rounded-lg bg-black px-6 py-3 text-white hover:bg-gray-800 transition">
@@ -93,6 +110,8 @@ const ProductDetailPage = () => {
 
                 </div>
 
+                {wantsToDelete && <DeleteProduct id={thisProduct.id} />}
+                {wantsToEdit && <EditProduct id={thisProduct.id} />}
             </div>
         </div>
     )

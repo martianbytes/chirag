@@ -61,7 +61,7 @@ const AllItems = () => {
                     title={product.title}
                     description={product.description}
                     price={product.price}
-                    imageUrl={product.images?.[0]}
+                    imageUrl={product.images}
                     onClick={() => navigate(`/product/${product.id}`)}
                 />
             ))}
