@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import Card from "./card";
+
 import { CardSkeleton } from "@/components/skeletons/Skeletons";
 import AddProduct from "./AddProduct";
+import Card from "./Card";
 
 const AllItems = () => {
     const navigate = useNavigate();
