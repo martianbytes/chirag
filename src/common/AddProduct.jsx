@@ -78,7 +78,7 @@ const AddProduct = () => {
                 </div>
             )}
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 bg-white p-6 rounded-xl border shadow-sm">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 bg-white p-6 rounded-xl border shadow-sm dark:bg-gray-800">
                 {/* Title */}
                 <div>
                     <label className="block text-sm font-medium mb-1">Title</label>

@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import Card from "./card";
+
 import { CardSkeleton } from "@/components/skeletons/Skeletons";
 import AddProduct from "./AddProduct";
+import Card from "./Card";
 
 const AllItems = () => {
     const navigate = useNavigate();
@@ -61,7 +62,7 @@ const AllItems = () => {
                     title={product.title}
                     description={product.description}
                     price={product.price}
-                    imageUrl={product.images?.[0]}
+                    imageUrl={product.images}
                     onClick={() => navigate(`/product/${product.id}`)}
                 />
             ))}
